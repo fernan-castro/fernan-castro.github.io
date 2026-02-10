@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hmmmmmm...........</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffe4e1; /* Soft Pink */
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+        }
+        h1 { color: #d02090; }
+        .buttons { margin-top: 20px; }
+        button {
+            padding: 15px 25px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 10px;
+            border: none;
+            transition: 0.3s;
+        }
+        #yesBtn { background-color: #ff69b4; color: white; margin-right: 10px; }
+        #noBtn { background-color: #a9a9a9; color: white; position: absolute; }
+        img { width: 200px; border-radius: 15px; margin-bottom: 20px; }
+
+        #questionSection { display: none;}
+    </style>
+</head>
+<body>
+    <div id="introSection">
+        <h1 id="introText">Hey so I've been meaning to ask you...</h1>
+        <button id="nextBtn" onclick="nextPhrase()">Next ➔</button>
+    </div>
+
+    <div id="questionSection">
+        <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3OHFobXVuOXJlbGV6NmJ5YThuMjVzMm5sOWloOGphazVmaTA4cm53aSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Vi0Ws3t4JSLOgdkaBq/giphy.gif" alt="Cute Cat">
+        
+        <h1>Will you be my Valentine? ❤️</h1>
+
+        <div class="buttons">
+            <button id="yesBtn" onclick="celebrate()">Yes!</button>
+            <button id="noBtn" onmouseover="moveButton()">No</button>
+        </div>
+    </div>
+
+
+    <script>
+        //phrases
+        const phrases = [
+            "A VERY important question",
+            "An EXTREMELY important question",
+            "AN EXTREMELY VERY MUCH IMPORTANT QUESTION"
+
+        ];
+
+        let cPhraseIndex = 0;
+
+        function nextPhrase() {
+            const introText = document.getElementById('introText')
+
+            if (cPhraseIndex < phrases.length) {
+                //change phrase to next
+                introText.innerText = phrases[cPhraseIndex];
+                cPhraseIndex++;
+            } else {
+                //hide intro and show valentine question
+                document.getElementById('introSection').style.display = 'none';
+                document.getElementById('questionSection').style.display = 'block';
+            }
+        }
+
+        function moveButton() {
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+            const noBtn = document.getElementById('noBtn');
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+
+        function celebrate() {
+            document.body.innerHTML = `
+                <h1 style="color: #d02090;">YAY</h1>
+                <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3Z2d2eGY1eXZzcGFqb3NkaXo1a20zMnR3d2lva2d3YmxkZWsxYXljYSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/ViSpZL4Nz52k0fiowe/giphy.gif" alt="Happy Dance">
+
+                <p>See you on the 14th!</p>
+                <audio id="Song" autoplay loop>
+                    <source src="media/song.mp3" type="audio/mpeg">
+                </audio>
+            `;
+        }
+    </script>
+</body>
+</html>
