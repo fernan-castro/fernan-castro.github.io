@@ -31,6 +31,17 @@
         img { width: 200px; border-radius: 15px; margin-bottom: 20px; }
 
         #questionSection { display: none;}
+
+        /* fade */
+
+        .fade-in {
+            animation: fadeIn 0.8s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
@@ -65,9 +76,14 @@
         function nextPhrase() {
             const introText = document.getElementById('introText')
 
+            introText.classList.remove('fade-in');
+
+            void introText.offsetWidth;
+
             if (cPhraseIndex < phrases.length) {
                 //change phrase to next
                 introText.innerText = phrases[cPhraseIndex];
+                introText.classList.add('fade-in');
                 cPhraseIndex++;
             } else {
                 //hide intro and show valentine question
@@ -94,6 +110,7 @@
                     <source src="media/song.mp3" type="audio/mpeg">
                 </audio>
             `;
+            document.getElementById('Song').play();
         }
     </script>
 </body>
